@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Фото архив</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<h2>Моя фотобаза</h2>
+
+
+<input id="album"
+placeholder="Альбом">
+
+<br>
+
+
+<input id="search"
+placeholder="Поиск по дате"
+oninput="searchPhotos()">
+
+
+<br>
+
+
+<video id="camera" autoplay></video>
+
+
+<br>
+
+<button onclick="makePhoto()">
+📷 Фото
+</button>
+
+
+<button onclick="exportPhotos()">
+💾 Экспорт
+</button>
+
+
+<div id="gallery"></div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
