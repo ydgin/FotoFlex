@@ -1,54 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фото архив</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Фото архив</title>
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+    <h2>Моя фотобаза</h2>
 
-<h2>Моя фотобаза</h2>
+    <input
+        id="album"
+        type="text"
+        placeholder="Альбом">
 
+    <br>
 
-<input id="album"
-placeholder="Альбом">
+    <input
+        id="search"
+        type="text"
+        placeholder="Поиск по альбому или дате"
+        oninput="searchPhotos()">
 
-<br>
+    <br>
 
+    <video
+        id="camera"
+        autoplay
+        playsinline
+        muted>
+    </video>
 
-<input id="search"
-placeholder="Поиск по дате"
-oninput="searchPhotos()">
+    <br>
 
+    <button onclick="makePhoto()">
+        📷 Фото
+    </button>
 
-<br>
+    <button onclick="exportPhotos()">
+        💾 Экспорт
+    </button>
 
+    <div id="gallery"></div>
 
-<video id="camera" autoplay></video>
-
-
-<br>
-
-<button onclick="makePhoto()">
-📷 Фото
-</button>
-
-
-<button onclick="exportPhotos()">
-💾 Экспорт
-</button>
-
-
-<div id="gallery"></div>
-
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
 </html>
