@@ -3,53 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Фото архив</title>
+    <title>Моя фотобаза</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <h2>📸 Моя фотобаза</h2>
-
-        <div class="input-group">
-            <input
-                id="album"
-                type="text"
-                placeholder="Название альбома">
+        <!-- Заголовок -->
+        <div class="header">
+            <h1>📸 Моя фотобаза</h1>
+            <div class="subtitle">Зберігання та керування фото</div>
         </div>
 
-        <div class="input-group">
-            <input
-                id="search"
-                type="text"
-                placeholder="🔍 Поиск по альбому или дате"
-                oninput="searchPhotos()">
+        <!-- Альбом -->
+        <div class="field-group">
+            <label>📁 Альбом</label>
+            <input id="album" type="text" placeholder="Назва альбому">
         </div>
 
+        <!-- Поиск -->
+        <div class="field-group">
+            <label>🔍 Пошук</label>
+            <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
+        </div>
+
+        <!-- Камера -->
         <div class="camera-wrapper">
-            <video
-                id="camera"
-                autoplay
-                playsinline
-                muted
-                style="display:none;">
-            </video>
+            <video id="camera" autoplay playsinline muted style="display:none;"></video>
             <div id="cameraPlaceholder" class="camera-placeholder">
                 <span>📷</span>
-                <p>Нажмите "Фото" для доступа к камере</p>
+                <p>Натисніть кнопку "Фото"<br>для доступу до камери</p>
+                <button onclick="startCamera()" class="btn-camera-start">▶ Включити камеру</button>
             </div>
         </div>
 
+        <!-- Кнопки -->
         <div class="button-group">
-            <button onclick="makePhoto()" class="btn-primary">
-                📷 Фото
-            </button>
-            <button onclick="exportPhotos()" class="btn-secondary">
-                💾 Экспорт
-            </button>
+            <button onclick="makePhoto()" class="btn btn-primary" id="photoBtn">📷 Фото</button>
+            <button onclick="exportPhotos()" class="btn btn-secondary">💾 Експорт</button>
         </div>
 
+        <!-- Галерея -->
         <div id="gallery"></div>
+        <div id="photoCount" class="photo-count"></div>
     </div>
 
     <script src="app.js"></script>
