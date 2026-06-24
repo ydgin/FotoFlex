@@ -2,50 +2,56 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Фото архив</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h2>Моя фотобаза</h2>
+    <div class="container">
+        <h2>📸 Моя фотобаза</h2>
 
-    <input
-        id="album"
-        type="text"
-        placeholder="Альбом">
+        <div class="input-group">
+            <input
+                id="album"
+                type="text"
+                placeholder="Название альбома">
+        </div>
 
-    <br>
+        <div class="input-group">
+            <input
+                id="search"
+                type="text"
+                placeholder="🔍 Поиск по альбому или дате"
+                oninput="searchPhotos()">
+        </div>
 
-    <input
-        id="search"
-        type="text"
-        placeholder="Поиск по альбому или дате"
-        oninput="searchPhotos()">
+        <div class="camera-wrapper">
+            <video
+                id="camera"
+                autoplay
+                playsinline
+                muted
+                style="display:none;">
+            </video>
+            <div id="cameraPlaceholder" class="camera-placeholder">
+                <span>📷</span>
+                <p>Нажмите "Фото" для доступа к камере</p>
+            </div>
+        </div>
 
-    <br>
+        <div class="button-group">
+            <button onclick="makePhoto()" class="btn-primary">
+                📷 Фото
+            </button>
+            <button onclick="exportPhotos()" class="btn-secondary">
+                💾 Экспорт
+            </button>
+        </div>
 
-    <video
-        id="camera"
-        autoplay
-        playsinline
-        muted>
-    </video>
-
-    <br>
-
-    <button onclick="makePhoto()">
-        📷 Фото
-    </button>
-
-    <button onclick="exportPhotos()">
-        💾 Экспорт
-    </button>
-
-    <div id="gallery"></div>
+        <div id="gallery"></div>
+    </div>
 
     <script src="app.js"></script>
-
 </body>
 </html>
