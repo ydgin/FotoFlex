@@ -11,7 +11,7 @@
 <div class="app">
   <!-- Верхня панель -->
   <div class="header">
-    <h1>📸 FOTOfLEX</h1>
+    <h1>📸 Моя фотобаза</h1>
     <div class="subtitle">Зберігання · керування · оригінали</div>
   </div>
 
@@ -19,15 +19,29 @@
   <div class="controls">
     <div class="field-group">
       <label>📁 Альбом</label>
-      <input id="album" type="text" placeholder="Назва альбому">
+      <div class="input-with-microphone">
+        <input id="album" type="text" placeholder="Назва альбому">
+        <button onclick="startVoiceInput('album')" class="btn-microphone" title="Голосове введення">🎤</button>
+      </div>
     </div>
     <div class="field-group">
       <label>🔍 Пошук</label>
-      <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
+      <div class="input-with-microphone">
+        <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
+        <button onclick="startVoiceInput('search')" class="btn-microphone" title="Голосове введення">🎤</button>
+      </div>
     </div>
   </div>
 
-  <!-- КАМЕРА НА ВЕСЬ ЕКРАН -->
+  <!-- ІНФОРМАЦІЯ ПРО КАМЕРУ -->
+  <div class="camera-info" id="cameraInfo">
+    <div class="info-header">📊 Характеристики камери</div>
+    <div id="cameraDetails" class="camera-details">
+      <span class="loading">⏳ Отримання даних...</span>
+    </div>
+  </div>
+
+  <!-- КАМЕРА -->
   <div class="camera-fullscreen" id="cameraWrapper">
     <video id="camera" autoplay playsinline muted></video>
     <div id="cameraPlaceholder" class="camera-placeholder">
@@ -35,7 +49,6 @@
       <p>Натисніть кнопку <strong>«Фото»</strong><br>для доступу до камери</p>
       <button onclick="startCamera()" class="btn-camera-start">▶ Включити камеру</button>
     </div>
-    <!-- Індикатор статусу -->
     <div id="cameraStatus" class="camera-status">⏳ Камера не активна</div>
   </div>
 
