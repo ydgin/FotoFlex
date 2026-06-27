@@ -15,18 +15,18 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
       background: #0a0202;
       min-height: 100vh;
-      padding: 8px;
+      padding: 6px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .container {
-      max-width: 480px;
+      max-width: 500px;
       width: 100%;
       background: linear-gradient(145deg, #2d0a0a, #1a0606);
       border-radius: 28px;
-      padding: 16px 16px 20px;
+      padding: 14px 14px 18px;
       box-shadow: 0 12px 48px rgba(255, 50, 0, 0.25);
       border: 1px solid rgba(255, 200, 0, 0.12);
     }
@@ -34,43 +34,43 @@
     /* Заголовок */
     .header {
       text-align: center;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 2px solid rgba(255, 200, 0, 0.15);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
     .header h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       background: linear-gradient(135deg, #ff7a3a, #ffd700);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
     .header .subtitle {
       color: #ffd700;
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.65;
-      margin-top: 2px;
-      letter-spacing: 1.5px;
+      margin-top: 0px;
+      letter-spacing: 1px;
     }
 
     /* Групи полів */
     .field-group {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     .field-group label {
       display: block;
       color: #ffd700;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       letter-spacing: 0.3px;
     }
     input {
       width: 100%;
-      padding: 12px 14px;
-      font-size: 15px;
+      padding: 10px 12px;
+      font-size: 14px;
       background: rgba(60, 20, 20, 0.8);
       border: 2px solid rgba(255, 200, 0, 0.12);
       border-radius: 12px;
@@ -87,22 +87,24 @@
       background: rgba(80, 30, 30, 0.9);
     }
 
-    /* КАМЕРА — майже весь екран */
+    /* ===== КАМЕРА майже весь екран ===== */
     .camera-wrapper {
       background: #0a0000;
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
-      margin: 12px 0 14px;
-      aspect-ratio: 16 / 9;
+      margin: 6px 0 10px;
+      /* робимо майже на весь екран */
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 */
       position: relative;
       border: 2px solid rgba(255, 200, 0, 0.08);
       box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
     }
-    video {
+    .camera-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -110,25 +112,35 @@
       background: #000;
     }
     .camera-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: #fff;
       text-align: center;
       padding: 16px;
+      background: #0a0000;
     }
     .camera-placeholder span {
-      font-size: 58px;
+      font-size: 56px;
       display: block;
       margin-bottom: 6px;
     }
     .camera-placeholder p {
       font-size: 14px;
       opacity: 0.7;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .btn-camera-start {
       background: linear-gradient(135deg, #ff6b35, #e63900);
       color: #fff;
       border: none;
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 40px;
       font-size: 16px;
       font-weight: 700;
@@ -145,20 +157,20 @@
     /* Кнопки дій */
     .button-group {
       display: flex;
-      gap: 12px;
-      margin: 8px 0 14px;
+      gap: 10px;
+      margin: 4px 0 10px;
     }
     .btn {
       flex: 1;
-      padding: 16px 12px;
-      font-size: 16px;
+      padding: 14px 10px;
+      font-size: 15px;
       font-weight: 700;
       border: none;
       border-radius: 40px;
       cursor: pointer;
       transition: all 0.2s;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
     .btn-primary {
       background: linear-gradient(135deg, #ff6b35, #e63900);
@@ -188,8 +200,8 @@
     #gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      gap: 12px;
+      margin-top: 14px;
     }
     .card {
       background: rgba(50, 18, 18, 0.7);
@@ -214,7 +226,7 @@
       background: #1a0a0a;
     }
     .card .info {
-      padding: 8px 10px 4px;
+      padding: 6px 10px 2px;
     }
     .card .small {
       font-size: 11px;
@@ -229,20 +241,20 @@
     }
     .card-actions {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       padding: 4px 10px 10px;
       flex-wrap: wrap;
     }
     .card-actions button {
       flex: 1;
-      padding: 7px 6px;
+      padding: 6px 4px;
       font-size: 11px;
       border-radius: 30px;
       font-weight: 700;
       border: none;
       cursor: pointer;
       transition: all 0.2s;
-      min-width: 48px;
+      min-width: 44px;
     }
     .btn-open {
       background: linear-gradient(135deg, #ff6b35, #e63900);
@@ -271,9 +283,9 @@
 
     .photo-count {
       color: rgba(255, 255, 255, 0.3);
-      font-size: 13px;
+      font-size: 12px;
       text-align: center;
-      margin-top: 12px;
+      margin-top: 10px;
       letter-spacing: 0.3px;
     }
 
@@ -288,10 +300,11 @@
 
     /* адаптив */
     @media (max-width: 420px) {
-      .container { padding: 12px; }
-      .header h1 { font-size: 22px; }
-      .btn { font-size: 14px; padding: 14px 10px; }
-      #gallery { grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 10px; }
+      .container { padding: 10px; }
+      .header h1 { font-size: 20px; }
+      .btn { font-size: 13px; padding: 12px 8px; }
+      #gallery { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
+      .camera-placeholder span { font-size: 44px; }
     }
     @media (min-width: 600px) {
       #gallery { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
@@ -317,9 +330,9 @@
     <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
   </div>
 
-  <!-- КАМЕРА майже весь екран (aspect 16/9) -->
+  <!-- ===== КАМЕРА майже весь екран (16/9) ===== -->
   <div class="camera-wrapper">
-    <video id="camera" autoplay playsinline muted style="display:none;"></video>
+    <video id="camera" autoplay playsinline muted></video>
     <div id="cameraPlaceholder" class="camera-placeholder">
       <span>📷</span>
       <p>Натисніть «Фото»<br>для доступу до камери</p>
@@ -342,7 +355,6 @@
   (function(){
     "use strict";
 
-    // DOM
     const video = document.getElementById("camera");
     const gallery = document.getElementById("gallery");
     const albumInput = document.getElementById("album");
@@ -411,6 +423,7 @@
           video.play().catch(e => console.warn("play front", e));
         })
         .catch(() => {
+          cameraPlaceholder.style.display = "flex";
           cameraPlaceholder.innerHTML = `
             <span>❌</span>
             <p>Не вдалося відкрити камеру</p>
@@ -426,13 +439,18 @@
       if (!db) { alert("❌ База завантажується"); return; }
       if (!cameraReady) {
         startCamera();
-        setTimeout(() => {
-          if (!cameraReady) {
+        // чекаємо поки камера запуститься
+        let attempts = 0;
+        const waitForCamera = setInterval(() => {
+          attempts++;
+          if (cameraReady) {
+            clearInterval(waitForCamera);
+            capturePhoto();
+          } else if (attempts > 15) {
+            clearInterval(waitForCamera);
             alert("❌ Камера не доступна. Дозвольте доступ.");
-            return;
           }
-          capturePhoto();
-        }, 900);
+        }, 300);
         return;
       }
       capturePhoto();
@@ -445,7 +463,7 @@
       bigCanvas.height = 720;
       const ctx = bigCanvas.getContext("2d");
       ctx.drawImage(video, 0, 0, 1280, 720);
-      const bigDataURL = bigCanvas.toDataURL("image/webp", 0.92); // висока якість
+      const bigDataURL = bigCanvas.toDataURL("image/webp", 0.92);
 
       // прев'ю (більше, ніж раніше — 320x320)
       const smallCanvas = document.createElement("canvas");
@@ -458,7 +476,7 @@
       const item = {
         id: Date.now(),
         small: smallDataURL,
-        big: bigDataURL,            // оригінал у повній якості
+        big: bigDataURL,
         album: albumInput.value.trim() || "Без альбома",
         date: new Date().toLocaleString()
       };
@@ -504,7 +522,7 @@
       updateCount();
     }
 
-    // ========== Відкрити оригінал (у новій вкладці) ==========
+    // ========== Відкрити оригінал ==========
     window.openPhoto = function(id) {
       const tx = db.transaction("photos", "readonly");
       tx.objectStore("photos").get(id).onsuccess = (e) => {
@@ -522,13 +540,12 @@
       };
     };
 
-    // ========== ЗАВАНТАЖИТИ ОРИГІНАЛ (повна якість) ==========
+    // ========== ЗАВАНТАЖИТИ ОРИГІНАЛ ==========
     window.downloadOriginal = function(id) {
       const tx = db.transaction("photos", "readonly");
       tx.objectStore("photos").get(id).onsuccess = (e) => {
         const p = e.target.result;
         if (!p) return;
-        // завантаження через посилання
         const link = document.createElement("a");
         link.href = p.big;
         link.download = `photo_${p.id}.webp`;
@@ -588,16 +605,17 @@
       };
     }
 
-    // ========== Клік по кнопці Фото — якщо камера не готова, стартуємо ==========
-    photoBtn.addEventListener('click', () => {
-      if (!cameraReady) startCamera();
+    // ========== Клік по кнопці Фото — запускає камеру ==========
+    photoBtn.addEventListener('click', function(e) {
+      if (!cameraReady) {
+        e.preventDefault();
+        startCamera();
+      }
     });
 
-    // ========== додаткове: якщо камера вже запущена, приховати плейсхолдер ==========
-    // невелика перевірка при завантаженні
+    // Якщо камера вже запущена — приховати плейсхолдер
     window.addEventListener('load', function() {
-      // якщо користувач вже надав дозвіл раніше — можна спробувати стартувати автоматично,
-      // але залишимо за кнопкою.
+      // нічого не робимо автоматично
     });
   })();
 </script>
