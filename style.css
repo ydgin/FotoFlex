@@ -12,7 +12,7 @@ html, body {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-  background: #0a0202;
+  background: #e8f4f8;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -23,32 +23,34 @@ body {
 .app {
   max-width: 500px;
   width: 100%;
-  background: linear-gradient(145deg, #2d0a0a, #1a0606);
+  background: linear-gradient(145deg, #f0f8ff, #d4e9f7);
   padding: 10px 12px 16px;
   min-height: 100vh;
+  box-shadow: 0 0 30px rgba(0, 150, 255, 0.1);
 }
 
 /* Заголовок */
 .header {
   text-align: center;
   padding-bottom: 8px;
-  border-bottom: 2px solid rgba(255, 200, 0, 0.15);
+  border-bottom: 2px solid rgba(0, 150, 255, 0.2);
   margin-bottom: 8px;
 }
 
 .header h1 {
   font-size: 22px;
   font-weight: 700;
-  background: linear-gradient(135deg, #ff7a3a, #ffd700);
+  background: linear-gradient(135deg, #0077be, #00bfff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .header .subtitle {
-  color: #ffd700;
+  color: #0077be;
   font-size: 11px;
-  opacity: 0.65;
+  opacity: 0.8;
+  font-weight: 500;
 }
 
 /* Поля вводу */
@@ -62,48 +64,142 @@ body {
 
 .field-group label {
   display: block;
-  color: #ffd700;
+  color: #005f8a;
   font-size: 11px;
   font-weight: 600;
   margin-bottom: 2px;
 }
 
-input {
-  width: 100%;
+.input-with-microphone {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.input-with-microphone input {
+  flex: 1;
   padding: 8px 12px;
   font-size: 13px;
-  background: rgba(60, 20, 20, 0.8);
-  border: 2px solid rgba(255, 200, 0, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(0, 150, 255, 0.2);
   border-radius: 10px;
-  color: #fff;
+  color: #1a2a3a;
   transition: all 0.25s;
   outline: none;
 }
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+.input-with-microphone input::placeholder {
+  color: rgba(0, 0, 0, 0.3);
 }
 
-input:focus {
-  border-color: #ffd700;
-  box-shadow: 0 0 0 4px rgba(255, 200, 0, 0.08);
-  background: rgba(80, 30, 30, 0.9);
+.input-with-microphone input:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 0 4px rgba(0, 150, 255, 0.15);
+  background: #ffffff;
 }
 
-/* ===== КАМЕРА НА ВЕСЬ ЕКРАН ===== */
+/* Кнопка мікрофона */
+.btn-microphone {
+  background: rgba(0, 150, 255, 0.1);
+  border: 2px solid rgba(0, 150, 255, 0.2);
+  border-radius: 10px;
+  color: #0077be;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-microphone:hover {
+  background: rgba(0, 150, 255, 0.2);
+  border-color: #00bfff;
+  transform: scale(1.05);
+}
+
+.btn-microphone:active {
+  transform: scale(0.95);
+}
+
+.btn-microphone.active {
+  background: rgba(255, 68, 68, 0.2);
+  border-color: #ff4444;
+  animation: pulse 0.5s infinite;
+  color: #ff4444;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(255, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.4); }
+}
+
+/* ===== ІНФОРМАЦІЯ ПРО КАМЕРУ ===== */
+.camera-info {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 6px 0 8px;
+  border: 1px solid rgba(0, 150, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 150, 255, 0.05);
+}
+
+.info-header {
+  color: #005f8a;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.camera-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 12px;
+  font-size: 11px;
+  color: #2a4a5a;
+}
+
+.camera-details .detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.08);
+}
+
+.camera-details .detail-label {
+  color: #4a7a8a;
+}
+
+.camera-details .detail-value {
+  color: #005f8a;
+  font-weight: 600;
+}
+
+.camera-details .loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #4a7a8a;
+  padding: 4px 0;
+}
+
+/* ===== КАМЕРА ===== */
 .camera-fullscreen {
   position: relative;
   width: 100%;
-  background: #000;
+  background: #0a1a2a;
   border-radius: 16px;
   overflow: hidden;
   margin: 6px 0 8px;
-  /* ВИСОТА: майже весь екран */
-  height: 60vh;
-  min-height: 300px;
-  max-height: 70vh;
-  border: 2px solid rgba(255, 200, 0, 0.08);
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.8);
+  height: 55vh;
+  min-height: 280px;
+  max-height: 65vh;
+  border: 2px solid rgba(0, 150, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 150, 255, 0.1);
 }
 
 .camera-fullscreen video {
@@ -111,7 +207,7 @@ input:focus {
   height: 100%;
   object-fit: cover;
   display: none;
-  background: #000;
+  background: #0a1a2a;
 }
 
 .camera-placeholder {
@@ -127,59 +223,59 @@ input:focus {
   color: #fff;
   text-align: center;
   padding: 20px;
-  background: #0a0000;
+  background: linear-gradient(145deg, #0a1a2a, #1a3a5a);
   z-index: 2;
 }
 
 .camera-placeholder span {
-  font-size: 64px;
+  font-size: 56px;
   display: block;
   margin-bottom: 8px;
 }
 
 .camera-placeholder p {
-  font-size: 15px;
+  font-size: 14px;
   opacity: 0.8;
   margin-bottom: 12px;
   line-height: 1.5;
+  color: #b0d0e0;
 }
 
 .camera-placeholder p strong {
-  color: #ff6b35;
+  color: #00bfff;
 }
 
 .btn-camera-start {
-  background: linear-gradient(135deg, #ff6b35, #e63900);
+  background: linear-gradient(135deg, #0077be, #00bfff);
   color: #fff;
   border: none;
-  padding: 12px 32px;
+  padding: 10px 28px;
   border-radius: 40px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 4px 16px rgba(255, 80, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 150, 255, 0.4);
 }
 
 .btn-camera-start:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 28px rgba(255, 80, 0, 0.5);
+  box-shadow: 0 6px 28px rgba(0, 150, 255, 0.5);
 }
 
-/* Статус камери */
 .camera-status {
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
-  color: #ffd700;
-  padding: 4px 14px;
+  color: #00bfff;
+  padding: 3px 14px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  border: 1px solid rgba(255, 200, 0, 0.15);
+  border: 1px solid rgba(0, 150, 255, 0.2);
   z-index: 3;
   backdrop-filter: blur(4px);
   white-space: nowrap;
@@ -199,8 +295,8 @@ input:focus {
 
 .btn {
   flex: 1;
-  padding: 14px 10px;
-  font-size: 15px;
+  padding: 12px 10px;
+  font-size: 14px;
   font-weight: 700;
   border: none;
   border-radius: 40px;
@@ -211,14 +307,14 @@ input:focus {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff6b35, #e63900);
+  background: linear-gradient(135deg, #0077be, #00bfff);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(255, 80, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 150, 255, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(255, 80, 0, 0.45);
+  box-shadow: 0 8px 28px rgba(0, 150, 255, 0.4);
 }
 
 .btn-primary:disabled {
@@ -228,14 +324,15 @@ input:focus {
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #ffd700, #f0a500);
-  color: #1a0a0a;
-  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.2);
+  background: linear-gradient(135deg, #e0f0ff, #b0d8ff);
+  color: #005f8a;
+  box-shadow: 0 4px 16px rgba(0, 150, 255, 0.1);
 }
 
 .btn-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 28px rgba(0, 150, 255, 0.2);
+  background: linear-gradient(135deg, #d0e8ff, #a0c8ff);
 }
 
 /* Галерея */
@@ -247,19 +344,21 @@ input:focus {
 }
 
 .card {
-  background: rgba(50, 18, 18, 0.7);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 200, 0, 0.08);
+  border: 1px solid rgba(0, 150, 255, 0.1);
   transition: all 0.25s;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 150, 255, 0.05);
 }
 
 .card:hover {
   transform: translateY(-3px);
-  border-color: rgba(255, 200, 0, 0.25);
-  box-shadow: 0 8px 24px rgba(255, 60, 0, 0.18);
+  border-color: rgba(0, 150, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 150, 255, 0.15);
 }
 
 .photo {
@@ -267,7 +366,7 @@ input:focus {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
-  background: #1a0a0a;
+  background: #d4e9f7;
 }
 
 .card .info {
@@ -276,14 +375,14 @@ input:focus {
 
 .card .small {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
+  color: #2a4a5a;
   line-height: 1.3;
   word-break: break-word;
 }
 
 .card .album-name {
   font-weight: 600;
-  color: #ffd700;
+  color: #005f8a;
   font-size: 11px;
 }
 
@@ -307,9 +406,9 @@ input:focus {
 }
 
 .btn-open {
-  background: linear-gradient(135deg, #ff6b35, #e63900);
+  background: linear-gradient(135deg, #0077be, #00bfff);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(255, 80, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 150, 255, 0.2);
 }
 
 .btn-open:hover {
@@ -317,27 +416,27 @@ input:focus {
 }
 
 .btn-download {
-  background: rgba(255, 215, 0, 0.15);
-  color: #ffd700;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  background: rgba(0, 150, 255, 0.1);
+  color: #0077be;
+  border: 1px solid rgba(0, 150, 255, 0.2);
 }
 
 .btn-download:hover {
-  background: rgba(255, 215, 0, 0.25);
+  background: rgba(0, 150, 255, 0.2);
 }
 
 .btn-delete {
-  background: rgba(255, 70, 70, 0.12);
-  color: #ff6b6b;
-  border: 1px solid rgba(255, 70, 70, 0.15);
+  background: rgba(255, 68, 68, 0.08);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.15);
 }
 
 .btn-delete:hover {
-  background: rgba(255, 70, 70, 0.25);
+  background: rgba(255, 68, 68, 0.18);
 }
 
 .photo-count {
-  color: rgba(255, 255, 255, 0.3);
+  color: #4a7a8a;
   font-size: 11px;
   text-align: center;
   margin-top: 8px;
@@ -347,14 +446,16 @@ input:focus {
 @media (max-width: 420px) {
   .app { padding: 6px 8px 12px; }
   .header h1 { font-size: 18px; }
-  .btn { font-size: 12px; padding: 12px 6px; }
+  .btn { font-size: 12px; padding: 10px 6px; }
   #gallery { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
-  .camera-placeholder span { font-size: 48px; }
-  .camera-fullscreen { height: 50vh; min-height: 250px; }
-  .camera-status { font-size: 10px; padding: 3px 12px; }
+  .camera-placeholder span { font-size: 44px; }
+  .camera-fullscreen { height: 50vh; min-height: 220px; }
+  .camera-status { font-size: 9px; padding: 2px 10px; }
+  .btn-microphone { width: 34px; height: 34px; font-size: 15px; }
+  .camera-details { font-size: 10px; }
 }
 
 @media (min-width: 600px) {
   #gallery { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
-  .camera-fullscreen { height: 65vh; }
+  .camera-fullscreen { height: 60vh; }
 }
