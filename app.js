@@ -131,31 +131,29 @@ function setupVoiceInput() {
                 try {
                     let transcript = event.results[0][0].transcript;
                     
-                    // ===== ВИДАЛЯЄМО ВСІ ПРОБІЛИ =====
+                    // ===== ЖОРСТКЕ ВИДАЛЕННЯ ВСІХ ПРОБІЛІВ =====
                     transcript = transcript.replace(/\s/g, '');
+                    transcript = transcript.replace(/[ \t\n\r\f\v\u00A0\u2028\u2029]/g, '');
                     
                     // ===== ВИЗНАЧАЄМО ТИП ПОЛЯ ТА ОБРОБЛЯЄМО =====
                     const fieldId = input.id;
-                    const isNumeric = input.type === 'number' || input.type === 'tel' || 
-                                      input.getAttribute('inputmode') === 'numeric';
                     
-                    // Для числових полів (покази, особовий рахунок)
-                    if (isNumeric || fieldId === 'accountNumber' || 
-                        fieldId === 'oldMeterReading' || fieldId === 'newMeterReading' ||
-                        fieldId === 'employeeId') {
+                    // СПИСОК ЧИСЛОВИХ ПОЛІВ
+                    const numericFields = ['accountNumber', 'employeeId', 'oldMeterReading', 'newMeterReading'];
+                    
+                    // ПЕРЕВІРКА: чи є поле числовим
+                    const isNumeric = input.type === 'number' || 
+                                      input.type === 'tel' || 
+                                      input.getAttribute('inputmode') === 'numeric' ||
+                                      numericFields.includes(fieldId);
+                    
+                    if (isNumeric) {
+                        // Залишаємо ТІЛЬКИ цифри
                         transcript = transcript.replace(/\D/g, '');
                         
                         // Особовий рахунок - тільки 10 цифр
                         if (fieldId === 'accountNumber') {
                             transcript = transcript.substring(0, 10);
-                        }
-                        // Табельний номер - тільки цифри
-                        if (fieldId === 'employeeId') {
-                            transcript = transcript.replace(/\D/g, '');
-                        }
-                        // Покази лічильників - тільки цифри
-                        if (fieldId === 'oldMeterReading' || fieldId === 'newMeterReading') {
-                            transcript = transcript.replace(/\D/g, '');
                         }
                     }
                     
@@ -172,11 +170,10 @@ function setupVoiceInput() {
                     // Для адреси - залишаємо літери, цифри, пробіли, крапки, коми, дефіси
                     if (fieldId === 'address') {
                         transcript = transcript.replace(/[^A-Za-zА-Яа-яЇїЄєІі0-9\.,\- ]/g, '');
-                        // Повертаємо пробіли для адреси, але прибираємо зайві
                         transcript = transcript.replace(/\s+/g, ' ').trim();
                     }
                     
-                    // Встановлюємо значення
+                    // ===== ВСТАНОВЛЮЄМО ЗНАЧЕННЯ =====
                     input.value = transcript;
                     
                     // Тригер події input для валідації
@@ -234,6 +231,40 @@ function setupVoiceInput() {
     });
 }
 
+// ========== АВТОМАТИЧНЕ ОЧИЩЕННЯ ВСІХ ПОЛІВ ВІД ПРОБІЛІВ ==========
+function setupAutoClean() {
+    // Очищаємо всі поля вводу при введенні
+    const allInputs = document.querySelectorAll('input:not([type="hidden"])');
+    allInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            const fieldId = this.id;
+            
+            // Числові поля
+            const numericFields = ['accountNumber', 'employeeId', 'oldMeterReading', 'newMeterReading'];
+            const isNumeric = this.type === 'number' || this.type === 'tel' || 
+                              this.getAttribute('inputmode') === 'numeric' ||
+                              numericFields.includes(fieldId);
+            
+            if (isNumeric) {
+                // Видаляємо всі пробіли і залишаємо тільки цифри
+                this.value = this.value.replace(/\s/g, '').replace(/\D/g, '');
+            } 
+            // Пломби та лічильники
+            else if (this.classList.contains('seal-input') || this.classList.contains('meter-input')) {
+                this.value = this.value.replace(/\s/g, '');
+            }
+            // Адреса
+            else if (fieldId === 'address') {
+                this.value = this.value.replace(/\s+/g, ' ').trim();
+            }
+            // Всі інші поля
+            else {
+                this.value = this.value.replace(/\s/g, '');
+            }
+        });
+    });
+}
+
 // ========== PIN ФУНКЦІЇ ==========
 const CORRECT_PIN = "3268";
 
@@ -260,6 +291,7 @@ function pinAddNum(num) {
                 initMeterTypes();
                 setDefaultValues();
                 setupVoiceInput();
+                setupAutoClean();
             } else {
                 if (pinError) pinError.innerText = '❌ Невірний PIN. Спробуйте 3268';
                 enteredPin = "";
@@ -289,6 +321,7 @@ function pinCheck() {
         initMeterTypes();
         setDefaultValues();
         setupVoiceInput();
+        setupAutoClean();
     } else {
         if (pinError) pinError.innerText = '❌ Невірний PIN. Правильний PIN: 3268';
         enteredPin = "";
@@ -1222,4 +1255,5 @@ document.addEventListener("DOMContentLoaded", function() {
     
     setDefaultValues();
     setupVoiceInput();
+    setupAutoClean();
 });
