@@ -8,33 +8,35 @@
 </head>
 <body>
 
-<div class="container">
-  <!-- Заголовок -->
+<div class="app">
+  <!-- Верхня панель -->
   <div class="header">
-    <h1>📸 FOTOfLEX</h1>
+    <h1>📸 Моя фотобаза</h1>
     <div class="subtitle">Зберігання · керування · оригінали</div>
   </div>
 
-  <!-- Альбом -->
-  <div class="field-group">
-    <label>📁 Альбом</label>
-    <input id="album" type="text" placeholder="Назва альбому (напр. Подорож)">
+  <!-- Альбом та пошук -->
+  <div class="controls">
+    <div class="field-group">
+      <label>📁 Альбом</label>
+      <input id="album" type="text" placeholder="Назва альбому">
+    </div>
+    <div class="field-group">
+      <label>🔍 Пошук</label>
+      <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
+    </div>
   </div>
 
-  <!-- Пошук -->
-  <div class="field-group">
-    <label>🔍 Пошук</label>
-    <input id="search" type="text" placeholder="Пошук по альбому або даті" oninput="searchPhotos()">
-  </div>
-
-  <!-- Камера -->
-  <div class="camera-wrapper" id="cameraWrapper">
+  <!-- КАМЕРА НА ВЕСЬ ЕКРАН -->
+  <div class="camera-fullscreen" id="cameraWrapper">
     <video id="camera" autoplay playsinline muted></video>
     <div id="cameraPlaceholder" class="camera-placeholder">
       <span>📷</span>
-      <p>Натисніть «Фото»<br>для доступу до камери</p>
+      <p>Натисніть кнопку <strong>«Фото»</strong><br>для доступу до камери</p>
       <button onclick="startCamera()" class="btn-camera-start">▶ Включити камеру</button>
     </div>
+    <!-- Індикатор статусу -->
+    <div id="cameraStatus" class="camera-status">⏳ Камера не активна</div>
   </div>
 
   <!-- Кнопки -->
